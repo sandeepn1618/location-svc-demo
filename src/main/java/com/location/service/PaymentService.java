@@ -20,6 +20,7 @@ public class PaymentService {
     public PaymentEntity createPayment(PaymentEntity paymentEntity) {
         Instant now = Instant.now();
         paymentEntity.setIsCreatedDate(now);
+      //  paymentEntity.setIsDeletedFlag('N');
 
         return paymentRepo.save(paymentEntity);
 
@@ -44,8 +45,22 @@ public class PaymentService {
 
 
 
-    public Optional<PaymentEntity> getPaymentById(int id) {
-        return paymentRepo.findById(id);
+    public Optional<PaymentEntity> getPaymentById(int id) throws NullPointerException {
+        Optional<PaymentEntity> entity = paymentRepo.findById(id);
+        PaymentEntity pEntity = new PaymentEntity();
+        return  entity;
+
+      /*  if (entity.isPresent()) {
+            entity.get().getIsDeletedFlag();
+        }
+        if (pEntity.getIsDeletedFlag().equals("N")) {
+                return entity;
+            }
+
+         else   {
+            pEntity.getIsDeletedFlag().equals("Y");
+            return null;
+        }*/
     }
 
     /**
@@ -58,4 +73,19 @@ public class PaymentService {
         paymentRepo.findAll().forEach(getAll -> payment.add(getAll));
         return payment;
     }
+
+    public void deleteById(int id) {
+        PaymentEntity pEntity = new PaymentEntity();
+        Instant now = Instant.now();
+        Optional<PaymentEntity> entity = paymentRepo.findById(id);
+        if (entity.isPresent()) {
+            List<Integer> paymentType = new ArrayList<>();
+            // entity.get().setIsDeletedFlag('Y');
+             entity.get().setIsCreatedDate(now);
+             paymentRepo.save(entity.get());
+
+        }
+       // paymentRepo.deleteById(id);
+    }
+
 }

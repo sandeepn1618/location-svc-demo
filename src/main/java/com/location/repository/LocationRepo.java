@@ -1,11 +1,9 @@
 package com.location.repository;
 
-import com.location.entity.PaymentEntity;
+import com.location.entity.LocationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PaymentRepo extends JpaRepository<PaymentEntity,Integer> {
-
-    void deleteById(Integer id);
+public interface LocationRepo extends JpaRepository<LocationEntity,Integer> {
 }

@@ -1,5 +1,6 @@
 package com.location.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import javax.persistence.*;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,5 +34,9 @@ public class PaymentEntity {
 
     @Column(name = "is_Created_Date", nullable = false)
     private Instant isCreatedDate ;
+
+    /*@Column(name = "is_Deleted_flag", nullable = false)
+    private Character isDeletedFlag;*/
+
 
 }

@@ -2,7 +2,6 @@ package com.location.controller;
 
 import com.location.service.PaymentService;
 import com.location.entity.PaymentEntity;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +38,10 @@ public class PaymentController {
     private List<PaymentEntity> getAllPayments()
     {
         return paymentService.getAllPayments();
+    }
+
+    @DeleteMapping("{id}")
+    private void deleteById(@PathVariable int id){
+        paymentService.deleteById(id);
     }
 }
